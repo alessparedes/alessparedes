@@ -26,29 +26,14 @@ class Result
 
     public static List<List<string>> searchSuggestions(List<string> repository, string customerQuery)
     {
-        List<List<String>> listRes = new List<List<String>>();
-        for (int i=1; i<customerQuery.Length; i++)
-        {
-            String s = customerQuery.Substring(0, i+1).ToLower();
-            List<String> temp = new List<String>();
-            int a = 0;
-            for (int j=0; j<repository.Count(); j++)
-            {
-                if (repository.IndexOf(j).ToLower().StartWith(s))
-                {
-                    temp.Add(repository.IndexOf(j).ToString().ToLower());
-                    a++;
-                }
-            }
-            /*Collentions.Sort(temp);
-            List<String> v = new ArrayList<String>();
-            for (int k=0; k<=3&&k<temp.Count(); k++)
-            {
-                v.Add(temp.IndexOf(k));
-            }
-            listRes.Add(v);*/
+        List<List<string>> suggestions = new List<List<string>>();
+        repository.sort();
+        for (int i=0; i<customerQuery.Lenght; i++){
+            string subStr = customerQuery.Substring(0,i);
+            List<string> matches = repository.FindAll(review => review.StartsWtith(subStr)).take(3).ToString();
+            suggestions.add(matches);
         }
-        return listRes;
+        return suggestions;
     }
 }
 
