@@ -26,11 +26,11 @@ class Result
 
     public static List<List<string>> searchSuggestions(List<string> repository, string customerQuery)
     {
-        List<List<String>> listRes = new ArrayList<>();
+        List<List<String>> listRes = new List<List<String>>();
         for (int i=1; i<customerQuery.Length; i++)
         {
             String s = customerQuery.Substring(0, i+1).ToLower();
-            List<String> temp = new ArrayList<String>();
+            List<String> temp = new List<String>();
             int a = 0;
             for (int j=0; j<repository.Count(); j++)
             {
@@ -40,13 +40,13 @@ class Result
                     a++;
                 }
             }
-            Collentions.Sort(temp);
+            /*Collentions.Sort(temp);
             List<String> v = new ArrayList<String>();
             for (int k=0; k<=3&&k<temp.Count(); k++)
             {
                 v.Add(temp.IndexOf(k));
             }
-            listRes.Add(v);
+            listRes.Add(v);*/
         }
         return listRes;
     }
