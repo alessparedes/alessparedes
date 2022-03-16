@@ -12,21 +12,6 @@ using System.Text.RegularExpressions;
 using System.Text;
 using System;
 
-
-
-class TriedNode
-{
-    Dictionary<char, TriedNode> child;
-    List <String> list;
-    bool isWord; 
-    public TriedNode()
-    {
-        child = new Dictionary<>();
-        list = new ArrayList<>();
-        //isWord = false;
-    }
-}
-
 class Result
 {
 
@@ -42,52 +27,29 @@ class Result
     public static List<List<string>> searchSuggestions(List<string> repository, string customerQuery)
     {
         List<List<String>> listRes = new ArrayList<>();
-        TriedNode root = buildTree(repository);
-        TriedNode curr = root;
-        boolean flag = flase;
-        for (int i=0; i<customerQuery.Length(); i++)
+        for (int i=1; i<customerQuery.Length; i++)
         {
-            char key = customerQuery[i];
-            curr = curr.child.get(key);
-            if (curr == null)
+            String s = customerQuery.Substring(0, i+1).ToLower();
+            List<String> temp = new ArrayList<String>();
+            int a = 0;
+            for (int j=0; j<repository.Count(); j++)
             {
-                flag = true;
-                break;
-            }
-            if (i>0)
-            {
-                List<String> temp = new ArrayList<>();
-                List<String> words = curr.list;
-                for (int j=0; j<3 && j<words.Count(); j++)
+                if (repository.IndexOf(j).ToLower().StartWith(s))
                 {
-                    temp.add(words.get(j).toLowerCase());
-                    res.add(temp);
+                    temp.Add(repository.IndexOf(j).ToString().ToLower());
+                    a++;
                 }
             }
-        }
-        return res;
-    }
-    public static TrieNode buildTree(List<String> repository)
-    {
-        TriedNode root = new TriedNode();
-        foreach   (String s in repository)
-        {
-            TriedNode curr = root;
-            for (int i=0; i<s.Length(); i++)
+            Collentions.Sort(temp);
+            List<String> v = new ArrayList<String>();
+            for (int k=0; k<=3&&k<temp.Count(); k++)
             {
-                char key = s[i];
-                if (curr.child.get(key) == null)
-                {
-                    curr.child.put(key, new TriedNode());
-                }
-                curr = curr.child.get(key);
-                curr.list.add(s);
+                v.Add(temp.IndexOf(k));
             }
-            curr.isWord = true;
+            listRes.Add(v);
         }
-        return root;
+        return listRes;
     }
-
 }
 
 class Solution
