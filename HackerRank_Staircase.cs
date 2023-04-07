@@ -25,5 +25,55 @@ A single integer, , denoting the size of the staircase.
 ** Output Format
 Print a staircase of size  using # symbols and spaces.
 
-Note: The last line must have  spaces in it.
+Note: The last line must have  spaces in it. If you consider something to improve you are free to mention it.
 */
+
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
+
+class Result
+{
+
+    /*
+     * Complete the 'staircase' function below.
+     *
+     * The function accepts INTEGER n as parameter.
+     */
+
+    public static void staircase(int n)
+    {
+        if (n > 0 && n <= 100){
+            for (int i = 1; i <= n; i++){
+                int stair = 0;
+                for (int space = 1; space <= (n - i); space++) Console.Write(" ");
+                while (stair < i){
+                    Console.Write("#");
+                    stair++;
+                }
+                Console.WriteLine("");
+            }
+        }
+    }
+
+}
+
+class Solution
+{
+    public static void Main(string[] args)
+    {
+        int n = Convert.ToInt32(Console.ReadLine().Trim());
+
+        Result.staircase(n);
+    }
+}
