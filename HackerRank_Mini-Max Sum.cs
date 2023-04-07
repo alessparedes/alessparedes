@@ -24,7 +24,6 @@ four of the five integers. (The output can be greater than a 32 bit integer.)
 * Sample Output
 10 14
 */
-
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections;
@@ -50,10 +49,10 @@ class Result
 
     public static void miniMaxSum(List<int> arr)
     {   
-        int[] newArr = new int[arr.Count];
+        long[] newArr = new long[arr.Count];
         for (int i = 0; i < arr.Count; i++)
         {
-            int aux = 0;
+            long aux = 0;
             for (int j = 0; j < arr.Count; j++)
             {
                 aux = (i != j) ? aux += arr[j] : aux;
