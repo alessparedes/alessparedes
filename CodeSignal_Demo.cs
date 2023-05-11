@@ -16,13 +16,14 @@ queries = [
     ["EXISTS", "2"],
     ["EXISTS", "5"],
     ["EXISTS", "1"],
-    ["EXISTS", "4"],
-    ["EXISTS", "3"],
-    ["EXISTS", "0"]
+    ["REMOVE", "2"],
+    ["REMOVE", "1"],
+    ["EXISTS", "2"],
+    ["EXISTS", "1"]
 ]
 
 Output 
-the output should be solution(queries) = ["", "", "", "", "true", "true", "true", "false", "false", "false"]
+the output should be solution(queries) = ["", "", "", "", "true", "true", "true", "false", "false", "false", "false"]
 
 */
 string[] solution(string[][] queries) {
