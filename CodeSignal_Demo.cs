@@ -25,7 +25,7 @@ queries = [
 Output 
 the output should be solution(queries) = ["", "", "", "", "true", "true", "true", "false", "false", "false", "false"]
 
-NOTE: I can't solve this array.
+NOTE: I can not solve this array.
 
 queries:
 [["ADD","2"], 
