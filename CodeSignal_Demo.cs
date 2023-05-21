@@ -25,34 +25,49 @@ queries = [
 Output 
 the output should be solution(queries) = ["", "", "", "", "true", "true", "true", "false", "false", "false", "false"]
 
+NOTE: I can't solve this array.
+
+queries:
+[["ADD","2"], 
+ ["ADD","3"], 
+ ["ADD","9"], 
+ ["REMOVE","10"], 
+ ["REMOVE","5"], 
+ ["REMOVE","5"], 
+ ["REMOVE","9"], 
+ ["REMOVE","2"], 
+ ["REMOVE","2"], 
+ ["REMOVE","9"], 
+ ["EXISTS","10"], 
+ ["EXISTS","2"], 
+ ["EXISTS","3"], 
+ ["EXISTS","9"], 
+ ["ADD","10"], 
+ ["EXISTS","10"]]
 */
 string[] solution(string[][] queries) {
     string[] result = new string[queries.Length];
-    string[] stringAdd =  new string[queries.Length];
-    string[] newResult =  new string[queries.Length];
-    
-    for (int i=0; i<queries.Length; i++){
-        if (queries[i][0].ToString().ToUpper() == "ADD"){
-            stringAdd[i] = queries[i][1].ToString();
+    string[] stringAdd = new string[queries.Length+1];
+    Console.WriteLine(queries.Length);
+    for (int i = 0; i < queries.Length; i++){
+        Console.WriteLine(string.Join(",", stringAdd));
+        if (queries[i][0].ToUpper() == "ADD"){
+            stringAdd[i] = queries[i][1];
             result[i] = "";
         }
-        if (queries[i][0].ToString().ToUpper() == "EXISTS"){
-            /* No lo pude probar
-            if (Array.Exists(queries, x => x == "REMOVE")) {
-                newResult[i] = Array.Exists(stringAdd, x => x == queries[i][1].ToString()).ToString().ToLower();
-            } else {
-                result[i] = Array.Exists(stringAdd, x => x == queries[i][1].ToString()).ToString().ToLower();    
-            }*/
-            result[i] = Array.Exists(stringAdd, x => x == queries[i][1].ToString()).ToString().ToLower();    
+        if (queries[i][0].ToUpper() == "EXISTS"){
+            result[i] = Array.Exists(stringAdd, x => x == queries[i][1].ToString()).ToString().ToLower();
         }
-        if (queries[i][0].ToString().ToUpper() == "REMOVE"){
-            newResult = result.Where(x=> x != queries[i][1].ToString()).ToArray();
-            newResult[i] = Array.Exists(stringAdd, x => x == queries[i][1].ToString()).ToString().ToLower();
+        if (queries[i][0].ToUpper() == "REMOVE"){
+            List<string> list = new List<string>(stringAdd);
+            list.Remove(queries[i][1]);
+            stringAdd = list.ToArray();
+            result[i] = Array.Exists(stringAdd, x => x != queries[i][1].ToString()).ToString().ToLower();
             
-            Console.WriteLine(newResult[i] + " -> " +queries[i][1].ToString());
-            return newResult;
         }
+        
+        
     }
+    
     return result;
 }
-
